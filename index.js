@@ -1,5 +1,5 @@
-const express = require('express')
-const port = 3010
+const express = require('express');
+const port = process.env.PORT || 3010;
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -9,11 +9,14 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
+let smtp_login = process.env.SMTP_LOGIN || '---'
+let smtp_password = process.env.SMTP_PASSWORD || '---'
+
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'zakrevskaya.natalia.97@gmail.com', // generated ethereal user
-        pass: 'zak30051997', // generated ethereal password
+        user: smtp_login /*'zakrevskaya.natalia.97@gmail.com'*/, // generated ethereal user
+        pass: smtp_password/*'zak30051997'*/, // generated ethereal password
     },
 });
 
