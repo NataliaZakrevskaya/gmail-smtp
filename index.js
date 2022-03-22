@@ -5,7 +5,15 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express()
 
-app.use(cors());
+const corsOptions = {
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204,
+    "allowedHeaders": ["Content-Type"]
+}
+
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
