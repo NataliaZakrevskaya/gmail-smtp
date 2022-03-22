@@ -9,14 +9,14 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
-let smtp_login = process.env.SMTP_LOGIN || '---'
-let smtp_password = process.env.SMTP_PASSWORD || '---'
+let smtp_login = process.env.SMTP_LOGIN || 'zakrevskaya.natalia.97@gmail.com'
+let smtp_password = process.env.SMTP_PASSWORD || 'zak30051997'
 
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: smtp_login, // generated ethereal user
-        pass: smtp_password, // generated ethereal password
+        user: smtp_login /*'zakrevskaya.natalia.97@gmail.com'*/, // generated ethereal user
+        pass: smtp_password/*'zak30051997'*/, // generated ethereal password
     },
 });
 
