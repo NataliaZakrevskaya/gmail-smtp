@@ -36,21 +36,25 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 app.post('/sendMessage', async function (req, res) {
-
-    let {name, email, phone, message} = req.body;
-    // send mail with defined transport object
-    let info = await transporter.sendMail({
-        from: 'My profile page', // sender address
-        to: 'zakrevskaya.natalia.97@gmail.com', // list of receivers
-        subject: 'testing gmail', // Subject line
-        // text: 'text for testing', // plain text body
-        html: `<b>Message from your portfolio</b> 
+    try {
+        let {name, email, phone, message} = req.body;
+        // send mail with defined transport object
+        let info = await transporter.sendMail({
+            from: 'My profile page', // sender address
+            to: 'zakrevskaya.natalia.97@gmail.com', // list of receivers
+            subject: 'testing gmail', // Subject line
+            // text: 'text for testing', // plain text body
+            html: `<b>Message from your portfolio</b> 
 <div>name: ${name}</div>
 <div>email: ${email}</div>
 <div>phone: ${phone}</div>
 <div>message: ${message}</div>`, // html body
-    });
-    res.send('ok!')
+        });
+        res.send('ok!')
+    } catch (e) {
+        console.log('e', e)
+        res.send(e)
+    }
 })
 
 app.listen(port, () => {
